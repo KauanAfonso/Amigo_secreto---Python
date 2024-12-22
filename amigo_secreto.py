@@ -8,7 +8,7 @@ class Amigo_secreto:
         self.dicionario_de_nomes = {}
 
     def pedir_nomes(self):
-        i = 1;
+        i = 1
         print("Envie os nomes de quem irá participar, quando finalizar digite 0\n")
         while True:
             nomes = input(f"Digite o nome de {i} participante: ")
@@ -20,12 +20,14 @@ class Amigo_secreto:
         return self.lista_nomes
     
     def sortear(self):
+        nomes_sorteados = []
         for i in self.lista_nomes:
             nome_aleatorio = random.choice(self.lista_nomes)
-            if nome_aleatorio != i:
+            if nome_aleatorio != i and nome_aleatorio:
                 self.dicionario_de_nomes[i] = nome_aleatorio
             else:
                 continue
+        print(self.dicionario_de_nomes)
         return self.dicionario_de_nomes
     
     def mostrar_sorteio(self):
@@ -36,9 +38,6 @@ class Amigo_secreto:
             print(f" {resposta} você tirou o(a): {self.dicionario_de_nomes[resposta]}")
             input("---------Pressione ENTER--------------")
             subprocess.run('cls', shell=True)
-
-    
-
     
 
 amigo = Amigo_secreto()
@@ -46,3 +45,6 @@ amigo = Amigo_secreto()
 amigo.pedir_nomes()
 amigo.sortear()
 amigo.mostrar_sorteio()
+
+
+#a cada sorteio retirar o nome da lista_nomes para não sortear de novo
