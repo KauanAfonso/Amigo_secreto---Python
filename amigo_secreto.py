@@ -5,6 +5,7 @@ class Amigo_secreto:
 
     def __init__(self):
         self.lista_nomes = []
+        self.lista_sorteio = []
         self.dicionario_de_nomes = {}
 
     def pedir_nomes(self):
@@ -16,15 +17,18 @@ class Amigo_secreto:
                 print("Nomes enviados...")
                 break
             self.lista_nomes.append(nomes)
+            self.lista_sorteio.append(nomes)
             i+=1
-        return self.lista_nomes
+        return self.lista_nomes, self.lista_sorteio
     
     def sortear(self):
-        nomes_sorteados = []
+        random.shuffle(self.lista_sorteio) 
+        
         for i in self.lista_nomes:
-            nome_aleatorio = random.choice(self.lista_nomes)
-            if nome_aleatorio != i and nome_aleatorio:
+            nome_aleatorio = random.choice(self.lista_sorteio)
+            if nome_aleatorio != i:
                 self.dicionario_de_nomes[i] = nome_aleatorio
+                self.lista_sorteio.remove(nome_aleatorio)
             else:
                 continue
         print(self.dicionario_de_nomes)
