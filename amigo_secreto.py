@@ -7,6 +7,16 @@ class Amigo_secreto:
         self.lista_nomes = []
         self.lista_sorteio = []
         self.dicionario_de_nomes = {}
+        
+    def mensagem_inicial(self):
+            print(r"""
+    *******************************
+    *                             *
+    *      🎁 AMIGO SECRETO 🎁    *
+    *                             *
+    *******************************
+          Feliz Sorteio! 🎄
+    """)
 
     def pedir_nomes(self):
         i = 1
@@ -50,7 +60,7 @@ class Amigo_secreto:
     
 
 amigo = Amigo_secreto()
-
+amigo.mensagem_inicial()
 amigo.pedir_nomes()
 amigo.sortear()
 amigo.mostrar_sorteio()
