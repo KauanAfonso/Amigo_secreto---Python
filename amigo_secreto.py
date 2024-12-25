@@ -22,17 +22,22 @@ class Amigo_secreto:
         return self.lista_nomes, self.lista_sorteio
     
     def sortear(self):
-        random.shuffle(self.lista_sorteio) 
+        while True:                                  # Loop até um sorteio válido acontecer
+            lista_sorteio = self.lista_nomes.copy()  # Faz uma cópia da lista de nomes
+            random.shuffle(lista_sorteio)            # Embaralha a cópia
+
+            self.dicionario_de_nomes.clear()         # Limpa o sorteio anterior (se existir)
+            for i in self.lista_nomes:               # Para cada participante:
+                if lista_sorteio[-1] == i:           # Evita que alguém tire a si mesmo
+                    random.shuffle(lista_sorteio)    # Se for o caso, embaralha de novo
+                self.dicionario_de_nomes[i] = lista_sorteio.pop()  # Atribui o sorteio
+            
+            # Verifica se o sorteio foi válido (ninguém tirou a si mesmo)
+            if all(k != v for k, v in self.dicionario_de_nomes.items()):
+                break                                # Se o sorteio for válido, sai do loop
         
-        for i in self.lista_nomes:
-            nome_aleatorio = random.choice(self.lista_sorteio)
-            if nome_aleatorio != i:
-                self.dicionario_de_nomes[i] = nome_aleatorio
-                self.lista_sorteio.remove(nome_aleatorio)
-            else:
-                continue
-        print(self.dicionario_de_nomes)
-        return self.dicionario_de_nomes
+        print("Resultado do sorteio:\n", self.dicionario_de_nomes)
+
     
     def mostrar_sorteio(self):
         while True:
