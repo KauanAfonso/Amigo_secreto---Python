@@ -1,5 +1,4 @@
 import subprocess
-
 import random
 class Amigo_secreto:
 
@@ -46,7 +45,7 @@ class Amigo_secreto:
             if all(k != v for k, v in self.dicionario_de_nomes.items()):
                 break                                # Se o sorteio for válido, sai do loop
         
-        print("Resultado do sorteio:\n", self.dicionario_de_nomes)
+        return self.dicionario_de_nomes
 
     
     def mostrar_sorteio(self):
